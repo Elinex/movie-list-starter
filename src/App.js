@@ -18,9 +18,12 @@ class App extends React.Component{
         super(props);
         this.state = {
             movies: movies,
+            textAddMovie: 'Add',
             notFound: null
         };
         this.handleChange = this.handleChange.bind(this);
+        this.addMovie = this.addMovie.bind(this);
+        this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
     }
 
     handleChange(e){
@@ -41,14 +44,38 @@ class App extends React.Component{
         }
     }
 
+    handlerChangeAddMovie (e){
+        e.preventDefault();
+        this.setState({
+            textAddMovie: e.target.value
+        })
+    }
+
+    addMovie(event){
+        event.preventDefault();
+
+        const newMovie = {
+            title: this.state.textAddMovie
+        };
+
+        movies.push(newMovie);
+
+        this.setState({
+            movies: [newMovie]
+        })
+        
+    }
+
     render(){
         return (
             <div>
                 <h1>MovieList</h1>
-                <AddMovie />
-                <SearchBar 
-                    handlerChangeEvent={this.handleChange} 
+                <AddMovie 
+                    addMovie={this.addMovie}
+                    value={this.state.textAddMovie}
+                    handlerChangeEvent={this.handlerChangeAddMovie}
                 />
+                <SearchBar handlerChangeEvent={this.handleChange} />
                 <MovieList movies={this.state.movies}/>
                 {(this.state.notFound && this.state.movies.length === 0) && (
                     <p>
