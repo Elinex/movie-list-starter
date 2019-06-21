@@ -1,10 +1,12 @@
 import React from 'react';
 
+import MovieListItem from './MovieListItem'
+
 const MovieList = ({movies}) => {
     return (
         <ul>
             {movies.map(movie => (
-                <li key={movie.title}>{movie.title}</li>
+                <MovieListItem movie={movie} key={movie.title}/>
             ))}
         </ul>
     )

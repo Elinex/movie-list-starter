@@ -12,6 +12,8 @@ const movies = [
     {title: 'Ex Machina'},
 ];
 
+const moviesAdded = [];
+
 class App extends React.Component{
 
     constructor(props){
@@ -28,15 +30,12 @@ class App extends React.Component{
 
     handleChange(e){
         const value = e.target.value.toLowerCase();
-
         const foundMovies = movies.filter(movie => 
             movie.title.toLowerCase().includes(value)
         );
-
         this.setState({
             movies: foundMovies
         })
-
         if (foundMovies.length === 0){
             this.setState({
                 notFound: true
@@ -53,17 +52,18 @@ class App extends React.Component{
 
     addMovie(event){
         event.preventDefault();
-
+        if(this.state.textAddMovie === ''){
+            alert('empty title!');
+            return;
+        }
         const newMovie = {
             title: this.state.textAddMovie
         };
-
-        movies.push(newMovie);
-
+        moviesAdded.push(newMovie);
         this.setState({
-            movies: [newMovie]
+            movies: moviesAdded,
+            textAddMovie: 'Add'
         })
-        
     }
 
     render(){
