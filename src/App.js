@@ -16,17 +16,16 @@ class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            movies: movies,
-            value: 'HI!!'
+            movies: movies
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e){
-        const value = e.target.value;
+        const value = e.target.value.toLowerCase();
         this.setState({
             movies: movies.filter(movie => 
-                movie.title.includes(value)
+                movie.title.toLowerCase().includes(value)
             )
         })
     }
@@ -37,7 +36,6 @@ class App extends React.Component{
                 <h1>MovieList</h1>
                 <SearchBar 
                     handlerChangeEvent={this.handleChange} 
-                    value={this.state.value}
                 />
                 <MovieList movies={this.state.movies}/>
             </div>
