@@ -1,6 +1,7 @@
 import React from 'react';
 
-import SearchBar from './SearchBar.js'
+import AddMovie from './AddMovie.js';
+import SearchBar from './SearchBar.js';
 import MovieList from './Movielist.js';
 
 const movies = [
@@ -44,6 +45,7 @@ class App extends React.Component{
         return (
             <div>
                 <h1>MovieList</h1>
+                <AddMovie />
                 <SearchBar 
                     handlerChangeEvent={this.handleChange} 
                 />
