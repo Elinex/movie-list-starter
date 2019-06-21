@@ -1,14 +1,6 @@
 import React from 'react';
 
-var movies = [
-    {title: 'Mean Girls'},
-    {title: 'Hackers'},
-    {title: 'The Grey'},
-    {title: 'Sunshine'},
-    {title: 'Ex Machina'},
-];
-
-const MovieList = () => {
+const MovieList = ({movies}) => {
     return (
         <ul>
             {movies.map(movie => (
