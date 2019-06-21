@@ -16,18 +16,28 @@ class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            movies: movies
+            movies: movies,
+            notFound: null
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e){
         const value = e.target.value.toLowerCase();
+
+        const foundMovies = movies.filter(movie => 
+            movie.title.toLowerCase().includes(value)
+        );
+
         this.setState({
-            movies: movies.filter(movie => 
-                movie.title.toLowerCase().includes(value)
-            )
+            movies: foundMovies
         })
+
+        if (foundMovies.length === 0){
+            this.setState({
+                notFound: true
+            })
+        }
     }
 
     render(){
@@ -38,6 +48,11 @@ class App extends React.Component{
                     handlerChangeEvent={this.handleChange} 
                 />
                 <MovieList movies={this.state.movies}/>
+                {(this.state.notFound && this.state.movies.length === 0) && (
+                    <p>
+                        No movie by that name found.
+                    </p>
+                )}
             </div>
         )
     }
