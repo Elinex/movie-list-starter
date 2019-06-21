@@ -17,30 +17,28 @@ class App extends React.Component{
         super(props);
         this.state = {
             movies: movies,
+            value: 'HI!!'
         };
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event){
-        const value = event.target.value;
-        
+    handleChange(e){
+        const value = e.target.value;
         this.setState({
-            movies: movies.filter(movie => movie.title === value)
+            movies: movies.filter(movie => 
+                movie.title.includes(value)
+            )
         })
-
-        if (value === '') {
-            this.setState({
-                movies: movies
-            })
-        }
     }
 
     render(){
         return (
             <div>
-                {console.log(this.state.movies)}
                 <h1>MovieList</h1>
-                <SearchBar handlerChangeEvent={this.handleChange} />
+                <SearchBar 
+                    handlerChangeEvent={this.handleChange} 
+                    value={this.state.value}
+                />
                 <MovieList movies={this.state.movies}/>
             </div>
         )

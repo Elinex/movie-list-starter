@@ -1,10 +1,15 @@
 import React from 'react';
 
-const SearchBar = ({handlerChangeEvent}) => {
+const SearchBar = ({value, handlerChangeEvent}) => {
 
     return (
         <form>
-            <input type="text" name="search" placeholder="Search" onChange={(e) => handlerChangeEvent(e)}/>
+            <input 
+                type="text" 
+                name="search" 
+                placeholder={value}
+                onChange={(e) => handlerChangeEvent(e)}
+            />
         </form>
     )
 }
