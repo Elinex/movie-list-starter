@@ -1,30 +1,16 @@
 import React from 'react';
 
-class App extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
+import SearchBar from './SearchBar.js'
+import MovieList from './Movielist.js';
 
-        var movies = [
-            {title: 'Mean Girls'},
-            {title: 'Hackers'},
-            {title: 'The Grey'},
-            {title: 'Sunshine'},
-            {title: 'Ex Machina'},
-          ];
-
-        return (
-            <div>
-                <h1>MovieList</h1>
-                <ul>
-                    {movies.map(movie => (
-                        <li key={movie.title}>{movie.title}</li>
-                    ))}
-                </ul>
-            </div>
-        )
-    }
+const App = () => {
+    return (
+        <div>
+            <h1>MovieList</h1>
+            <SearchBar />
+            <MovieList />
+        </div>
+    )
 }
 
 export default App;
