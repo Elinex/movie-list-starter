@@ -21,7 +21,8 @@ class App extends React.Component{
         this.state = {
             movies: movies,
             textAddMovie: 'Add',
-            notFound: null
+            notFound: null,
+            isWatched: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.addMovie = this.addMovie.bind(this);
@@ -76,12 +77,17 @@ class App extends React.Component{
                     handlerChangeEvent={this.handlerChangeAddMovie}
                 />
                 <SearchBar handlerChangeEvent={this.handleChange} />
-                <MovieList movies={this.state.movies}/>
+                <MovieList 
+                    movies={this.state.movies} 
+                    isWatched={this.state.isWatched}
+                />
+
                 {(this.state.notFound && this.state.movies.length === 0) && (
                     <p>
                         No movie by that name found.
                     </p>
                 )}
+
             </div>
         )
     }
