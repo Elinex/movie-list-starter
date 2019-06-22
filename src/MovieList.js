@@ -11,12 +11,12 @@ class MovieList extends React.Component {
     this.changeIsWatched = this.changeIsWatched.bind(this);
   }
 
-  changeIsWatched(){
-    this.setState((state) => {
-      return {
-        isWatched: !state.isWatched
-      }
-    })
+  // change the button text
+  changeIsWatched(e){
+    const value = e.target.value;
+    this.setState({
+      isWatched: value === 'watched' ? true : false
+    });
   }
 
   render (){
@@ -38,8 +38,8 @@ class MovieList extends React.Component {
 
     return (
       <div>
-        <button onClick={() => this.changeIsWatched()}>Watched</button>
-        <button onClick={() => this.changeIsWatched()}>To Watch</button>
+        <button type='submit' value={'watched'} onClick={(e) => this.changeIsWatched(e)}>Watched</button>
+        <button type='submit' value={'to watch'} onClick={(e) => this.changeIsWatched(e)}>To Watch</button>
         <ul>
           { this.state.isWatched
             ? template(this.state.isWatched)
