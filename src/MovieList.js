@@ -22,7 +22,11 @@ class MovieList extends React.Component {
   render (){
 
     const template = (value) => {
-      this.props.movies.map(movie => (
+      const filterMovies = this.props.movies.filter(
+        movie => movie.watched === value
+      );
+
+      return filterMovies.map(movie => (
         <MovieListItem 
           movie={movie} 
           key={movie.title} 
@@ -31,7 +35,6 @@ class MovieList extends React.Component {
         />
       ))
     }
-
 
     return (
       <div>

@@ -15,14 +15,13 @@ class App extends React.Component{
       notFound: null,
       isWatched: true
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
-    // this.changeIsWatched = this.changeIsWatched.bind(this);
     this.changeMovieWatched = this.changeMovieWatched.bind(this);
   }
 
-  handleChange(e){
+  handleSearch(e){
     const value = e.target.value.toLowerCase();
     const foundMovies = movies.filter(movie => 
       movie.title.toLowerCase().includes(value)
@@ -61,14 +60,6 @@ class App extends React.Component{
     })
   }
 
-  // changeIsWatched(){
-  //   this.setState((state) => {
-  //     return {
-  //       isWatched: !state.isWatched
-  //     }
-  //   })
-  // }
-
   // method used in MovieListItem
   changeMovieWatched(movieClicked){
     // change movie.watched property:
@@ -96,11 +87,10 @@ class App extends React.Component{
           value={this.state.textAddMovie}
           handlerChangeEvent={this.handlerChangeAddMovie}
         />
-        <SearchBar handlerChangeEvent={this.handleChange} />
+        <SearchBar handlerSearchEvent={this.handleSearch} />
         <MovieList 
           movies={this.state.movies}
           isWatched={this.state.isWatched}
-          // changeIsWatched={this.changeIsWatched}
           changeMovieWatched={this.changeMovieWatched}
         />
 
