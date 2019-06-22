@@ -3,91 +3,87 @@ import React from 'react';
 import AddMovie from './AddMovie.js';
 import SearchBar from './SearchBar.js';
 import MovieList from './Movielist.js';
-import {movies} from './moviesData.js';
-
-const moviesAdded = [];
+import { movies } from './moviesData.js';
 
 class App extends React.Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            movies: movies,
-            textAddMovie: 'Add',
-            notFound: null,
-            isWatched: true
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.addMovie = this.addMovie.bind(this);
-        this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
+  constructor(props){
+    super(props);
+    this.state = {
+      movies: movies,
+      textAddMovie: '',
+      notFound: null,
+      isWatched: true
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.addMovie = this.addMovie.bind(this);
+    this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
+  }
+
+  handleChange(e){
+    const value = e.target.value.toLowerCase();
+    const foundMovies = movies.filter(movie => 
+      movie.title.toLowerCase().includes(value)
+    );
+    this.setState({
+      movies: foundMovies
+    })
+    if (foundMovies.length === 0){
+      this.setState({
+        notFound: true
+      })
     }
+  }
 
-    handleChange(e){
-        const value = e.target.value.toLowerCase();
-        const foundMovies = movies.filter(movie => 
-            movie.title.toLowerCase().includes(value)
-        );
-        this.setState({
-            movies: foundMovies
-        })
-        if (foundMovies.length === 0){
-            this.setState({
-                notFound: true
-            })
-        }
+  handlerChangeAddMovie (e){
+    e.preventDefault();
+    this.setState({
+        textAddMovie: e.target.value
+    })
+  }
+
+  addMovie(event){
+    event.preventDefault();
+    if(this.state.textAddMovie === ''){
+      alert('empty title!');
+      return;
     }
+    const newMovie = {
+      title: this.state.textAddMovie
+    };
+    movies.push(newMovie);
+    this.setState({
+      movies: movies,
+      textAddMovie: ''
+    })
+  }
 
-    handlerChangeAddMovie (e){
-        e.preventDefault();
-        this.setState({
-            textAddMovie: e.target.value
-        })
-    }
+  changeMovieWatched () {
+    this.setState
+  }
 
-    addMovie(event){
-        event.preventDefault();
-        if(this.state.textAddMovie === ''){
-            alert('empty title!');
-            return;
-        }
-        const newMovie = {
-            title: this.state.textAddMovie
-        };
-        moviesAdded.push(newMovie);
-        this.setState({
-            movies: moviesAdded,
-            textAddMovie: 'Add'
-        })
-    }
+  render(){
+    return (
+      <div>
+        <h1>MovieList</h1>
+        <AddMovie 
+          addMovie={this.addMovie}
+          value={this.state.textAddMovie}
+          handlerChangeEvent={this.handlerChangeAddMovie}
+        />
+        <SearchBar handlerChangeEvent={this.handleChange} />
+        <MovieList 
+          movies={this.state.movies} 
+          isWatched={this.state.isWatched}
+        />
 
-    changeMovieWatched () {
-        this.setState
-    }
+        {(this.state.notFound && this.state.movies.length === 0) && (
+          <p>No movie by that name found.</p>
+        )}
 
-    render(){
-        return (
-            <div>
-                <h1>MovieList</h1>
-                <AddMovie 
-                    addMovie={this.addMovie}
-                    value={this.state.textAddMovie}
-                    handlerChangeEvent={this.handlerChangeAddMovie}
-                />
-                <SearchBar handlerChangeEvent={this.handleChange} />
-                <MovieList 
-                    movies={this.state.movies} 
-                    isWatched={this.state.isWatched}
-                />
-
-                {(this.state.notFound && this.state.movies.length === 0) && (
-                    <p>
-                        No movie by that name found.
-                    </p>
-                )}
-
-            </div>
-        )
-    }
+      </div>
+    )
+  }
 }
 
 export default App;

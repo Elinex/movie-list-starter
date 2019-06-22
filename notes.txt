@@ -1,0 +1,9 @@
+Ram code:
+const Search = props => {
+    <form
+        onChange={}
+    >
+        <input />
+        <input />
+    </form>
+}

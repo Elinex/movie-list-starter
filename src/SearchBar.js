@@ -11,4 +11,4 @@ const SearchBar = ({value, handlerChangeEvent}) => (
     </form>
 )
 
-export default SearchBar;
+export default SearchBar; 
