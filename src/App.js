@@ -51,7 +51,11 @@ class App extends React.Component{
     }
     const newMovie = {
       title: this.state.textAddMovie,
-      watched: true
+      watched: true,
+      year: 1995, 
+      runtime: '100 min', 
+      metascore: 46, 
+      imdbRating: '6.2'
     };
     movies.push(newMovie);
     this.setState({
