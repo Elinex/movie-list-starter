@@ -18,6 +18,7 @@ class App extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
+    this.changeIsWatched = this.changeIsWatched.bind(this);
   }
 
   handleChange(e){
@@ -62,6 +63,18 @@ class App extends React.Component{
     this.setState
   }
 
+  changeIsWatched(){
+    this.setState((state) => {
+      return {
+        isWatched: !state.isWatched
+      }
+    })
+  }
+
+  // this.setState((state, props) => {
+  //   return {counter: state.counter + props.step};
+  // });
+
   render(){
     return (
       <div>
@@ -75,6 +88,7 @@ class App extends React.Component{
         <MovieList 
           movies={this.state.movies} 
           isWatched={this.state.isWatched}
+          changeIsWatched={this.changeIsWatched}
         />
 
         {(this.state.notFound && this.state.movies.length === 0) && (

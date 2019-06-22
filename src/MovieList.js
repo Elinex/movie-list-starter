@@ -5,7 +5,7 @@ import MovieListItem from './MovieListItem'
 const MovieList = (props) => {
   return (
     <div>
-      <div>{props.isWatched ? 'Watched' : 'To Watch'}</div>
+      <button onClick={() => props.changeIsWatched()}>{props.isWatched ? 'Watched' : 'To Watch'}</button>
       <ul>
         {props.movies.map(movie => (
           <MovieListItem 
