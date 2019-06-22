@@ -2,8 +2,9 @@ Ram code:
 const Search = props => {
     <form
         onChange={}
+        onSubmit={}
     >
-        <input />
-        <input />
+        <input ...text/>
+        <input ...submit/>
     </form>
 }

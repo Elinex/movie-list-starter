@@ -19,6 +19,7 @@ class App extends React.Component{
     this.addMovie = this.addMovie.bind(this);
     this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
     this.changeIsWatched = this.changeIsWatched.bind(this);
+    this.changeMovieWatched = this.changeMovieWatched.bind(this);
   }
 
   handleChange(e){
@@ -50,17 +51,14 @@ class App extends React.Component{
       return;
     }
     const newMovie = {
-      title: this.state.textAddMovie
+      title: this.state.textAddMovie,
+      watched: true
     };
     movies.push(newMovie);
     this.setState({
       movies: movies,
       textAddMovie: ''
     })
-  }
-
-  changeMovieWatched () {
-    this.setState
   }
 
   changeIsWatched(){
@@ -71,9 +69,14 @@ class App extends React.Component{
     })
   }
 
-  // this.setState((state, props) => {
-  //   return {counter: state.counter + props.step};
-  // });
+  changeMovieWatched(movie){
+    // console.log(movie);
+    movie.watched = !movie.watched;
+
+    console.log(movie);
+    
+    
+  }
 
   render(){
     return (
@@ -89,6 +92,7 @@ class App extends React.Component{
           movies={this.state.movies} 
           isWatched={this.state.isWatched}
           changeIsWatched={this.changeIsWatched}
+          changeMovieWatched={this.changeMovieWatched}
         />
 
         {(this.state.notFound && this.state.movies.length === 0) && (
