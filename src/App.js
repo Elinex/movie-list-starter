@@ -60,8 +60,9 @@ class App extends React.Component{
     movies.push(newMovie);
     this.setState({
       movies: movies,
-      textAddMovie: ''
+      textAddMovie: '',
     })
+    event.target.reset();
   }
 
   // method used in MovieListItem
@@ -90,6 +91,7 @@ class App extends React.Component{
           addMovie={this.addMovie}
           value={this.state.textAddMovie}
           handlerChangeEvent={this.handlerChangeAddMovie}
+          // textPlaceHolder={this.state.textPlaceHolder}
         />
         <SearchBar handlerSearchEvent={this.handleSearch} />
         <MovieList 

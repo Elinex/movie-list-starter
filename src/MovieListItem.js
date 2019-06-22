@@ -18,10 +18,21 @@ class MovieListItem extends React.Component {
   }
 
   render () {
+    const texts = ['watched', 'year', 'runtime', 'metascore', 'imdbRating'];
+
     const templateMovieInfo = (
-      <p>
-        hello
-      </p>
+      <div>
+        {texts.map(text => 
+          {
+            if (text === 'watched'){
+              return (<p key={text}>{text}: icon</p>)
+            } else {
+              return (<p key={text}>{text}: {this.props.movie[text]}</p>)
+            }
+          }
+          
+        )}
+      </div>
     );
 
     return (
