@@ -3,14 +3,7 @@ import React from 'react';
 import AddMovie from './AddMovie.js';
 import SearchBar from './SearchBar.js';
 import MovieList from './Movielist.js';
-
-const movies = [
-    {title: 'Mean Girls'},
-    {title: 'Hackers'},
-    {title: 'The Grey'},
-    {title: 'Sunshine'},
-    {title: 'Ex Machina'},
-];
+import {movies} from './moviesData.js';
 
 const moviesAdded = [];
 
@@ -65,6 +58,10 @@ class App extends React.Component{
             movies: moviesAdded,
             textAddMovie: 'Add'
         })
+    }
+
+    changeMovieWatched () {
+        this.setState
     }
 
     render(){
