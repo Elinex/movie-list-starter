@@ -69,12 +69,21 @@ class App extends React.Component{
     })
   }
 
-  changeMovieWatched(movie){
-    // console.log(movie);
-    movie.watched = !movie.watched;
+  // method used in MovieListItem
+  changeMovieWatched(movieClicked){
+    // change movie.watched property:
+    movieClicked.watched = !movieClicked.watched;
 
-    console.log(movie);
-    
+    // update state.movies with the updated movie:
+    this.setState((state) => {
+      return {
+        movies: state.movies
+        .filter(
+          movie => movie.title !== movieClicked.title
+        )
+        .concat(movieClicked)
+      }
+    })
     
   }
 
