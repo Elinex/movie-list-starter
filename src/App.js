@@ -18,7 +18,7 @@ class App extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.handlerChangeAddMovie = this.handlerChangeAddMovie.bind(this);
-    this.changeIsWatched = this.changeIsWatched.bind(this);
+    // this.changeIsWatched = this.changeIsWatched.bind(this);
     this.changeMovieWatched = this.changeMovieWatched.bind(this);
   }
 
@@ -61,13 +61,13 @@ class App extends React.Component{
     })
   }
 
-  changeIsWatched(){
-    this.setState((state) => {
-      return {
-        isWatched: !state.isWatched
-      }
-    })
-  }
+  // changeIsWatched(){
+  //   this.setState((state) => {
+  //     return {
+  //       isWatched: !state.isWatched
+  //     }
+  //   })
+  // }
 
   // method used in MovieListItem
   changeMovieWatched(movieClicked){
@@ -98,9 +98,9 @@ class App extends React.Component{
         />
         <SearchBar handlerChangeEvent={this.handleChange} />
         <MovieList 
-          movies={this.state.movies} 
+          movies={this.state.movies}
           isWatched={this.state.isWatched}
-          changeIsWatched={this.changeIsWatched}
+          // changeIsWatched={this.changeIsWatched}
           changeMovieWatched={this.changeMovieWatched}
         />
 
