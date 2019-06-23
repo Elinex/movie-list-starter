@@ -25,29 +25,31 @@ class MovieListItem extends React.Component {
         {texts.map(text => 
           {
             if (text === 'watched'){
-              return (<p key={text}>{text}: icon</p>)
+              return (
+                <p key={text}>{text}: {this.props.movie[text] ? 'yes': 'no'}</p>
+              )
             } else {
               return (<p key={text}>{text}: {this.props.movie[text]}</p>)
             }
           }
-          
         )}
       </div>
     );
 
     return (
       <div style={styles.root}>
-        <div>
-          <p onClick={() => this.changeMovieInfo()}>
-            {this.props.movie.title}
-          </p>
+
+        <div onClick={() => this.changeMovieInfo()}>
+          {this.props.movie.title}
           {this.state.showMovieInfo && templateMovieInfo}
         </div>
+
         <div>
           <button onClick={() => this.props.changeMovieWatched(this.props.movie)} >
             {this.props.isWatched ? 'Watched' : 'To Watch'}
           </button>
         </div>
+
       </div>
     )
   }
@@ -60,6 +62,7 @@ const styles = {
     alignItems: 'center',
     border: 'solid 1px',
     margin: '5px',
+    minHeight: '2.5em'
   },
 }
 export default MovieListItem;
