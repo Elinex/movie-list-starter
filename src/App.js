@@ -85,27 +85,37 @@ class App extends React.Component{
 
   render(){
     return (
-      <div>
-        <h1>MovieList</h1>
-        <AddMovie 
-          addMovie={this.addMovie}
-          value={this.state.textAddMovie}
-          handlerChangeEvent={this.handlerChangeAddMovie}
-          // textPlaceHolder={this.state.textPlaceHolder}
-        />
-        <SearchBar handlerSearchEvent={this.handleSearch} />
-        <MovieList 
-          movies={this.state.movies}
-          isWatched={this.state.isWatched}
-          changeMovieWatched={this.changeMovieWatched}
-        />
+      <div style={styles.mainDiv}>
+        <div>
+          <h1>MovieList</h1>
+        </div>
+        <div>
+          <AddMovie 
+            addMovie={this.addMovie}
+            value={this.state.textAddMovie}
+            handlerChangeEvent={this.handlerChangeAddMovie}
+          />
+          <SearchBar handlerSearchEvent={this.handleSearch} />
+        </div>
+        <div>
+          <MovieList 
+            movies={this.state.movies}
+            isWatched={this.state.isWatched}
+            changeMovieWatched={this.changeMovieWatched}
+          />
 
-        {(this.state.notFound && this.state.movies.length === 0) && (
-          <p>No movie by that name found.</p>
-        )}
-
+          {(this.state.notFound && this.state.movies.length === 0) && (
+            <p>No movie by that name found.</p>
+          )}
+        </div>
       </div>
     )
+  }
+}
+
+const styles = {
+  mainDiv: {
+    // display: 'block'
   }
 }
 

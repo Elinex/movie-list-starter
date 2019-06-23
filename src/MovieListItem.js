@@ -36,18 +36,30 @@ class MovieListItem extends React.Component {
     );
 
     return (
-      <li>
-        <p onClick={() => this.changeMovieInfo()}>
-          {this.props.movie.title}
-        </p>
-        {this.state.showMovieInfo && templateMovieInfo}
-        <button onClick={() => this.props.changeMovieWatched(this.props.movie)} >
-          {this.props.isWatched ? 'Watched' : 'To Watch'}
-        </button>
-      </li>
+      <div style={styles.root}>
+        <div>
+          <p onClick={() => this.changeMovieInfo()}>
+            {this.props.movie.title}
+          </p>
+          {this.state.showMovieInfo && templateMovieInfo}
+        </div>
+        <div>
+          <button onClick={() => this.props.changeMovieWatched(this.props.movie)} >
+            {this.props.isWatched ? 'Watched' : 'To Watch'}
+          </button>
+        </div>
+      </div>
     )
   }
-
 }
 
+const styles = {
+  root: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    border: 'solid 1px',
+    margin: '5px',
+  },
+}
 export default MovieListItem;
